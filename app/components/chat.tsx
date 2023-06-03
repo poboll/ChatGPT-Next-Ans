@@ -695,76 +695,85 @@ export function Chat(props: {
       >
         {messages.map((message, i) => {
           const isUser = message.role === "user";
+          // console.log("[message.content]"+message.content+message.role);
+          if (!isUser) {
+            console.log("[message.content]" + message.content + message.role);
 
-          return (
-            <div
-              key={i}
-              className={
-                isUser ? styles["chat-message-user"] : styles["chat-message"]
-              }
-            >
-              <div className={styles["chat-message-container"]}>
-                <div className={styles["chat-message-avatar"]}>
-                  <Avatar role={message.role} />
-                </div>
-                {(message.preview || message.streaming) && (
-                  <div className={styles["chat-message-status"]}>
-                    {Locale.Chat.Typing}
-                  </div>
-                )}
-                <div className={styles["chat-message-item"]}>
-                  {!isUser &&
-                    !(message.preview || message.content.length === 0) && (
-                      <div className={styles["chat-message-top-actions"]}>
-                        {message.streaming ? (
-                          <div
-                            className={styles["chat-message-top-action"]}
-                            onClick={() => onUserStop(message.id ?? i)}
-                          >
-                            {Locale.Chat.Actions.Stop}
-                          </div>
-                        ) : (
-                          <div
-                            className={styles["chat-message-top-action"]}
-                            onClick={() => onResend(i)}
-                          >
-                            {Locale.Chat.Actions.Retry}
-                          </div>
-                        )}
-
-                        <div
-                          className={styles["chat-message-top-action"]}
-                          onClick={() => copyToClipboard(message.content)}
-                        >
-                          {Locale.Chat.Actions.Copy}
-                        </div>
+            //if (/\(|\)/.test(message.content)) {
+            // 如果消息中包含英文括号，替换为中文括号
+            //message.content = message.content.replace(/\(/g, "（").replace(/\));
+          };
+        }
+          message.content = message.content.replace(/^\n+|\n+$/mg, "");
+        return (
+        <div
+          key={i}
+          className={
+            isUser ? styles["chat-message-user"] : styles["chat-message"]
+          }
+        >
+          <div className={styles["chat-message-container"]}>
+            <div className={styles["chat-message-avatar"]}>
+              <Avatar role={message.role} />
+            </div>
+            {(message.preview || message.streaming) && (
+              <div className={styles["chat-message-status"]}>
+                {Locale.Chat.Typing}
+              </div>
+            )}
+            <div className={styles["chat-message-item"]}>
+              {!isUser &&
+                !(message.preview || message.content.length === 0) && (
+                  <div className={styles["chat-message-top-actions"]}>
+                    {message.streaming ? (
+                      <div
+                        className={styles["chat-message-top-action"]}
+                        onClick={() => onUserStop(message.id ?? i)}
+                      >
+                        {Locale.Chat.Actions.Stop}
+                      </div>
+                    ) : (
+                      <div
+                        className={styles["chat-message-top-action"]}
+                        onClick={() => onResend(i)}
+                      >
+                        {Locale.Chat.Actions.Retry}
                       </div>
                     )}
-                  <Markdown
-                    content={message.content}
-                    loading={
-                      (message.preview || message.content.length === 0) &&
-                      !isUser
-                    }
-                    onContextMenu={(e) => onRightClick(e, message)}
-                    onDoubleClickCapture={() => {
-                      if (!isMobileScreen()) return;
-                      setUserInput(message.content);
-                    }}
-                    fontSize={fontSize}
-                    parentRef={scrollRef}
-                  />
-                </div>
-                {!isUser && !message.preview && (
-                  <div className={styles["chat-message-actions"]}>
-                    <div className={styles["chat-message-action-date"]}>
-                      {message.date.toLocaleString()}
+
+                    <div
+                      className={styles["chat-message-top-action"]}
+                      onClick={() => copyToClipboard(message.content)}
+                    >
+                      {Locale.Chat.Actions.Copy}
                     </div>
                   </div>
                 )}
-              </div>
+              <Markdown
+                content={message.content}
+                loading={
+                  (message.preview || message.content.length === 0) &&
+                  !isUser
+                }
+                onContextMenu={(e) => onRightClick(e, message)}
+                onDoubleClickCapture={() => {
+                  if (!isMobileScreen()) return;
+                  setUserInput(message.content);
+                }}
+                fontSize={fontSize}
+                parentRef={scrollRef}
+              />
             </div>
-          );
+            {!isUser && !message.preview && (
+              <div className={styles["chat-message-actions"]}>
+                <div className={styles["chat-message-action-date"]}>
+                  {message.date.toLocaleString()}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        );
         })}
       </div>
 
