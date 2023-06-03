@@ -699,9 +699,10 @@ export function Chat(props: {
           if (!isUser) {
             console.log("[message.content]" + message.content + message.role);
 
-            //if (/\(|\)/.test(message.content)) {
+            if (/\(|\)/.test(message.content)) {
             // 如果消息中包含英文括号，替换为中文括号
             //message.content = message.content.replace(/\(/g, "（").replace(/\));
+            message.content = message.content.replace(/^\n+|\n+$/mg, "");
           };
         }
           message.content = message.content.replace(/^\n+|\n+$/mg, "");
