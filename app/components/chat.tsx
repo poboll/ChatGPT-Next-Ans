@@ -707,9 +707,9 @@ export function Chat(props: {
             message.content = message.content.replace(" ", "");
           };
         }
-          message.content = message.content.replace(" ", "");
-          message.content = message.content.replace("】", "】\n");
-          message.content = message.content.replace(/^\n+|\n+$/mg, "");
+          //message.content = message.content.replace(" ", "");
+          //message.content = message.content.replace("】", "】\n");
+          //message.content = message.content.replace(/^\n+|\n+$/mg, "");
         return (
         <div
           key={i}
