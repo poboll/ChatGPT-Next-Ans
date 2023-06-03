@@ -157,19 +157,18 @@ function _Home() {
 
   return (
     <div
-      className={`${
-        config.tightBorder && !isMobileScreen()
-          ? styles["tight-container"]
-          : styles.container
-      }`}
+      className={`${config.tightBorder && !isMobileScreen()
+        ? styles["tight-container"]
+        : styles.container
+        }`}
     >
       <div
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>字节悦动（内部专用）</div>
+          <div className={styles["sidebar-title"]}>开始搜题</div>
           <div className={styles["sidebar-sub-title"]}>
-            ChatGPT Next
+            你的个人题解助手。
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
@@ -194,7 +193,7 @@ function _Home() {
                 onClick={chatStore.deleteSession}
               />
             </div>
-            
+
             <div className={styles["sidebar-action"]}>
               <IconButton
                 icon={<SettingsIcon />}
@@ -205,11 +204,11 @@ function _Home() {
                 shadow
               />
             </div>
-            
-          
-           
+
+
+
           </div>
-        
+
           <div>
             <IconButton
               icon={<AddIcon />}
