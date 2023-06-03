@@ -147,7 +147,7 @@ const cn = {
   },
   Store: {
     DefaultTopic: "新的聊天",
-    BotHello: "本站由梅州字节悦动科技有限公司部署，仅用于梅州和赣州字节悦动两家公司内部使用，不对外开放。  \n\n商务合作微信：zhang_add_rich（注明来意）  \n\nAI思考延迟约20秒，回复内容越长所需时间也更长，请耐心等待。  \n\nShift + Enter 换行，开头输入斜杠 / 搜索 Prompt 预设。",
+    BotHello: "请输入题目。",
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) =>
