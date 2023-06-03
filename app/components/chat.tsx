@@ -703,8 +703,12 @@ export function Chat(props: {
             // 如果消息中包含英文括号，替换为中文括号
             //message.content = message.content.replace(/\(/g, "（").replace(/\));
             message.content = message.content.replace(/^\n+|\n+$/mg, "");
+            message.content = message.content.replace("】", "】\n");
+            message.content = message.content.replace(" ", "");
           };
         }
+          message.content = message.content.replace(" ", "");
+          message.content = message.content.replace("】", "】\n");
           message.content = message.content.replace(/^\n+|\n+$/mg, "");
         return (
         <div
