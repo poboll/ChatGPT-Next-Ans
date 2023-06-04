@@ -702,9 +702,11 @@ export function Chat(props: {
             if (/\(|\)/.test(message.content)) {
               // 如果消息中包含英文括号，替换为中文括号
               message.content = message.content.replace("(", "（").replace(")", "）");
-              
+
             };
           }
+          // 如果消息中包含一行没有信息的行，则删除行
+          message.content = message.content.split('\n').filter(line => line.trim() !== '').join('\n');
           // 删除消息中的空格
           //message.content = message.content.replace(/\s+/g, "");
           //删除开头和结尾的换行符message.content = message.content.replace(/^\n+|\n+$/mg, "");
