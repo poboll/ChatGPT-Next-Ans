@@ -413,7 +413,7 @@ export function Chat(props: {
   const fontSize = useChatStore((state) => state.config.fontSize);
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const a = "请帮我用小学知识做以下这道题，尽量使用150字内精简地分别写出考查知识点、解题思路、解题过程。运算过程不能带单位运算，结果带单位；式子的结果的单位用中文括号括（）起来；乘法符号用×；不要设未知数不使用解方程求解。你必须严格按照我给出的格式回答，注意换行：【分析】(换行)本题考查α。解题思路是β。（换行）【解答】（必须换行）解：γ。（换行）答：以下是问题：\n";
+  const a = "请帮我用小学知识做以下这道题，尽量使用150字内精简地分别写出考查知识点、解题思路、解题过程。运算过程不能带单位运算，结果带单位；式子的结果的单位用中文括号括（）起来；乘法符号用×；不要设未知数不使用解方程求解。你必须严格按照我给出的格式回答：【分析】(必须换行)本题考查α。解题思路是β。（必须换行）【解答】（必须换行）解：γ。（必须换行）答：以下是问题：\n";
   const [userInput, setUserInput] = useState("");
   const [beforeInput, setBeforeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -702,15 +702,10 @@ export function Chat(props: {
             if (/\(|\)/.test(message.content)) {
             // 如果消息中包含英文括号，替换为中文括号
             //message.content = message.content.replace(/\(/g, "（").replace(/\));
-            message.content = message.content.replace("(", "（").replace(")", "）");
             message.content = message.content.replace(/^\n+|\n+$/mg, "");
-            message.content = message.content.replace("】", "】\n");
-            message.content = message.content.replace(" ", "");
           };
         }
-          //message.content = message.content.replace(" ", "");
-          //message.content = message.content.replace("】", "】\n");
-          //message.content = message.content.replace(/^\n+|\n+$/mg, "");
+          message.content = message.content.replace(/^\n+|\n+$/mg, "");
         return (
         <div
           key={i}
