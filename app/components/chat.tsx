@@ -413,7 +413,7 @@ export function Chat(props: {
   const fontSize = useChatStore((state) => state.config.fontSize);
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const a = "计算过程不带单位，结果单位且用括号括起来；所有括号用中文格式括号；不要出现空格；乘法用×；不要设未知数、不用方程。按格式回答：【分析】(换行)本题考查α，解题思路是β。（换行）【解答】（换行）解：γ。（换行）答：";
+  const a = "小学知识做题。计算过程不带单位，结果单位且用括号括起来；所有括号用中文格式括号；乘法用×；不要设未知数、不用方程。按格式回答：【分析】(换行)本题考查α，解题思路是β。（换行）【解答】（换行）解：γ。（换行）答：。以下是问题\n\n";
   const [userInput, setUserInput] = useState("");
   const [beforeInput, setBeforeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
