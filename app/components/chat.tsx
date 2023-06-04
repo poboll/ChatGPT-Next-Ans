@@ -706,7 +706,7 @@ export function Chat(props: {
             };
           }
           // 删除消息中的空格
-          message.content = message.content.replace(/\s+/g, "");
+          //message.content = message.content.replace(/\s+/g, "");
           //删除开头和结尾的换行符message.content = message.content.replace(/^\n+|\n+$/mg, "");
           return (
             <div
