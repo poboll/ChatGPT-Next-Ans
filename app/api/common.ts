@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-const OPENAI_URL = "api.chatanywhere.cn";//api.openai.com\api.chatanywhere.cn\gpt-api.serendipitous-clue.com
+const OPENAI_URL = "gpt-api.serendipitous-clue.com";//api.openai.com\api.chatanywhere.cn\gpt-api.serendipitous-clue.com
 const DEFAULT_PROTOCOL = "https";
 const PROTOCOL = process.env.PROTOCOL ?? DEFAULT_PROTOCOL;
 const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
